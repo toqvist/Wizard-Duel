@@ -1,0 +1,121 @@
+
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+@font-face {
+    font-family: 'Noto Color Emoji';
+    src: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
+  }
+
+h1,h2,h3,h4,h5,p {
+    font-family: 'Niconne', cursive;
+}
+
+i {
+    font-size: 300%;
+    font-style: normal;
+}
+
+
+.stars {
+    font-size: 2em;
+    flex: 0 2 1;
+}
+
+.battlefield {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.title {
+    font-size: 300%;
+    color: rgb(247, 243, 7);
+}
+.game-wrapper {
+    
+}
+
+body {
+    background: linear-gradient(to left top, blue, red) fixed;
+    background-image: linear-gradient(
+    180deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(254deg 99% 23%) 26%,
+    hsl(261deg 97% 25%) 45%,
+    hsl(266deg 95% 28%) 58%,
+    hsl(270deg 94% 31%) 68%,
+    hsl(274deg 92% 34%) 76%,
+    hsl(277deg 91% 37%) 81%,
+    hsl(280deg 90% 39%) 86%,
+    hsl(283deg 90% 42%) 92%,
+    hsl(286deg 91% 44%) 100%
+    );
+}
+
+.ground {
+    display:flex;
+}
+
+.brick {
+    width: 25%;
+    height: auto;
+    
+}
+
+.player-box, .opponent-box {
+    text-align: center;
+}
+
+.element:hover {
+    transition: transform 125ms;
+    transform: translateY(-5px);
+}
+.element {
+    background-color: transparent;
+    border: none;
+}
+
+/* TRANSITIONS */
+.player-box.animate {
+    transition: transform 100ms;
+    transform: translateX(20%);
+    transition-timing-function: ease;
+}
+
+.player-element, .opponent-element {
+    opacity: 0%;
+}
+
+.player-element.animate  {
+    transition: opacity 50ms;
+    opacity: 100%;
+}
+.player-zone.animate {
+    transition: transform 500ms;
+    transform: translateX(100%);
+}
+.opponent-box.animate{
+    text-align: start;
+}
+.opponent-box.animate {
+    transition: transform 100ms;
+    transform: translateX(-10%);
+    transition-timing-function: ease;
+}
+
+.opponent-zone.animate {
+    transition: transform 500ms;
+    transform: translateX(-100%);
+    
+}
+
+
+
