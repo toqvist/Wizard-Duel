@@ -60,26 +60,33 @@ addShields(opponent.shieldContainer,opponent.shields)
 const elementButtons = document.querySelector("div.elements");
 elementButtons.addEventListener('click', duel);
 
+//Announcer text that announces what's going on. 
 const announcer = document.querySelector("p.announcer")
-//const shieldsSymbol 
+
+let gameRunning = true;
 let animated = false;
 
-function duel(event){
+//New game button
+const newGameButton = document.querySelector("button.new-game");
+newGameButton.addEventListener("click", newGame);
 
-    if (animated) {
-        resetAnimations();
-    }
+function duel(event){
+    if (gameRunning) {
+        if (animated) {
+            resetAnimations();
+        }
     
 
-    player.natElement = new NaturalElement(document.createElement("i"), event.target.innerText)
-    player.zone.append(player.natElement.htmlElement);
+        player.natElement = new NaturalElement(document.createElement("i"), event.target.innerText)
+        player.zone.append(player.natElement.htmlElement);
 
-    opponent.natElement = new NaturalElement(document.createElement("i"), randomElement())
-    opponent.zone.append(opponent.natElement.htmlElement);
+        opponent.natElement = new NaturalElement(document.createElement("i"), randomElement())
+        opponent.zone.append(opponent.natElement.htmlElement);
 
-    animate();
+        animate();
 
-    resolveRound(player.natElement,opponent.natElement)
+        resolveRound(player.natElement,opponent.natElement)
+    }
 
 }
 //return player or opponent as string
@@ -88,6 +95,7 @@ function resolveRound (playerE, opponentE) {
     if (playerE.beats == opponentE.symbol) {
         
         announcer.innerText = "Player Wins Round!"
+        announcer.style.color = "yellow"
         opponent.shields--;
         console.log("oppo " + opponent.shields)
         if (opponent.shields === 0) {
@@ -97,6 +105,7 @@ function resolveRound (playerE, opponentE) {
     } else if (opponentE.beats == playerE.symbol) {
         
         announcer.innerText = "Opponent Wins Round!"
+        announcer.style.color = "red"
         player.shields--;
         console.log("player " + player.shields)
         if (player.shields === 0) {
@@ -105,6 +114,7 @@ function resolveRound (playerE, opponentE) {
 
     } else {
         announcer.innerText = "Draw!"
+        announcer.style.color = "yellow"
     }
 }
 
@@ -112,12 +122,15 @@ function playerWins () {
     opponent.wizard.innerText = "💀"
     announcer.innerText = "You win!!!"
     confetti.start();
-
+    
+    endGameState();
 }
 
 function opponentWins () {
     player.wizard.innerText = "💀"
     announcer.innerText = "You lose."
+    
+    endGameState();
 }
 
 //Add class "animate" to all elements that should be animated.
@@ -187,12 +200,43 @@ function generateShieldString (shields) {
     }
 }
 
-
-
 function addShields (shieldDiv,shields) {
     for (let i = 0; i < shields; i++) {
         shield = document.createElement("i")
         shieldDiv.append(shield)
         shield.innerText = "🔮";
+        shield.classList.add("shield")
     }
+}
+
+function newGame () {
+    confetti.stop();
+    gameRunning = true;
+    elementButtons.style.opacity = "100%"
+    newGameButton.style.opacity = "0%";
+    resetGameAssets();
+}
+
+function endGameState () {
+    gameRunning = false;
+    elementButtons.style.opacity = "30%"
+    newGameButton.style.opacity = "100%";
+    resetAnimations();
+}
+function resetGameAssets() {
+    
+
+    player.wizard.innerText = "🧙"
+    opponent.wizard.innerText = randomWizard();
+    
+    //Clear shield assets
+    let allShields = document.body.querySelectorAll("i.shield")
+    for (const sh of allShields) {
+        sh.remove();
+    }
+    //Add new shield assets
+    player.shields = 3;
+    addShields(player.shieldContainer,3);
+    opponent.shields = 3;
+    addShields(opponent.shieldContainer,3);
 }

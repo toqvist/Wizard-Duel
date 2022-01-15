@@ -59,9 +59,6 @@ header {
     font-size: 300%;
     color: rgb(247, 243, 7);
 }
-.game-wrapper {
-    
-}
 
 body {
     background: linear-gradient(to left top, blue, red) fixed;
@@ -161,5 +158,34 @@ body {
     opacity: 100%;
 }
 
+button.new-game {
+    transition: 850ms;
+    border-color: transparent;
+    font-size: 4vh;
+    opacity: 0%;
+    font-family: 'Niconne', cursive;
+    color: rgb(247, 243, 7);
+    background-image: linear-gradient(
+    180deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(254deg 99% 23%) 26%,
+    hsl(261deg 97% 25%) 45%,
+    hsl(266deg 95% 28%) 58%,
+    hsl(270deg 94% 31%) 68%,
+    hsl(274deg 92% 34%) 76%,
+    hsl(277deg 91% 37%) 81%,
+    hsl(280deg 90% 39%) 86%,
+    hsl(283deg 90% 42%) 92%,
+    hsl(286deg 91% 44%) 100%
+    );
+    border-radius: 15px;
+}
 
+button.new-game:hover {
+    transition: 200ms;
+    transform: scale(1.4);
+}
 
+.new-game-wrapper {
+    text-align: center;
+}
