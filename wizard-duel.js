@@ -2,20 +2,34 @@
 //👿👺
 //🌋🌳🌊
 //💀🔮
-//Object
- //function element (symbol){
-    //this.symbol = symbol;
-    //Return true if it beats, otherwise false. Check if both false at round resolution to determine draw. 
-    // function beats (e) {
-    //     if (beats === e) {
-    //         return true;
-    //     }
-    // }
-//}
 
 //Confusingly, I call these: 🔥🌱💧 elements, (like earth, wind and fire): 
+ function Element (symbol){
+    this.symbol = symbol;
+    this.name = genName();
+    this.beats = genBeats();
+    
+    function genName (){ 
+        if (symbol === "🔥") {
+            return "fire";
+        } else if (symbol === "🌱") {
+            return "nature";
+        } else if (symbol === "💧") {
+            return "water";
+        }
+    };
+    function genBeats (){
+        if (symbol === "🔥") {
+            return "🌱";
+        } else if (symbol === "🌱") {
+            return "💧";
+        } else if (symbol === "💧") {
+            return "🔥";
+        }
+    }
+}
 
-//Element buttons
+//Element buttons, player selects one and then the round starts.
 const elementButtons = document.querySelector("div.elements");
 elementButtons.addEventListener('click', duel);
 
@@ -35,14 +49,14 @@ let opponent = {
 
 function duel(event){
     console.log(event)
+
+    let newElement = new Element("🌱");
+    console.log(newElement.symbol)
+    console.log(newElement.beats)
     
     player.element = document.createElement("i");
     player.element.innerText = event.target.innerText;
     player.zone.append(player.element);
-
-    // const opponentElement = document.createElement("i");
-    // opponentElement.innerText = randomElement();
-    // opponent.zone.append(opponentElement);
 
     opponent.element = document.createElement("i");
     opponent.element.innerText = randomElement();
@@ -66,6 +80,9 @@ function duel(event){
 //return player or opponent as string
 function whoWinsRound (playerE, opponentE) {
     
+
+
+
     // if playerE.beats(opponentE) 
     // 🔥 beats 🌱
     // 💧 beats 🔥
