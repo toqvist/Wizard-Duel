@@ -35,9 +35,6 @@
     }
 }
 
-//Element buttons, player selects one and then the round starts.
-const elementButtons = document.querySelector("div.elements");
-elementButtons.addEventListener('click', duel);
 
 //Player wizard object
 let player = {
@@ -54,9 +51,18 @@ let opponent = {
     shield: 3,
 }
 
+//Element buttons, player selects one and then the round starts.
+const elementButtons = document.querySelector("div.elements");
+elementButtons.addEventListener('click', duel);
+
+let animated = false;
+
 function duel(event){
 
-    //resetAnimations();
+    if (animated) {
+        resetAnimations();
+    }
+    
 
     player.natElement = new NaturalElement(document.createElement("i"), event.target.innerText)
     player.zone.append(player.natElement.htmlElement);
@@ -100,16 +106,20 @@ function animate () {
     opponent.box.classList.add("animate")
     opponent.natElement.htmlElement.classList.add("animate");
     opponent.zone.classList.add("animate");
+    
+    animated = true;
 }
 
 function resetAnimations() {
     player.box.classList.remove("animate")
-    player.natElement.htmlElement.classList.aremove("animate");
+    player.natElement.htmlElement.classList.remove("animate");
     player.zone.classList.remove("animate");
 
     opponent.box.classList.remove("animate")
     opponent.natElement.htmlElement.classList.remove("animate");
     opponent.zone.classList.remove("animate");
+
+    animated = false;
 }
 
 
