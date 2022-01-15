@@ -96,8 +96,10 @@ function resolveRound (playerE, opponentE) {
         
         announcer.innerText = "Player Wins Round!"
         announcer.style.color = "yellow"
+  
         opponent.shields--;
-        console.log("oppo " + opponent.shields)
+        opponent.shieldContainer.querySelector("i.shield").remove();
+
         if (opponent.shields === 0) {
             playerWins();
         }
@@ -106,8 +108,10 @@ function resolveRound (playerE, opponentE) {
         
         announcer.innerText = "Opponent Wins Round!"
         announcer.style.color = "red"
+        
         player.shields--;
-        console.log("player " + player.shields)
+        player.shieldContainer.querySelector("i.shield").remove();
+        
         if (player.shields === 0) {
             opponentWins();
         }
