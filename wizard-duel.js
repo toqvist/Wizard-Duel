@@ -43,6 +43,7 @@ let player = {
     box : document.querySelector("div.player-box"),
     shields: 3,
     shieldContainer : document.querySelector("div.player.shields"),
+    name: "Player",
 }
 addShields(player.shieldContainer,player.shields)
 
@@ -70,13 +71,17 @@ let animated = false;
 const newGameButton = document.querySelector("button.new-game");
 newGameButton.addEventListener("click", newGame);
 
+//Text box
+const textBox = document.body.querySelector("input")
+textBox.addEventListener("keydown", inputName)
+const enterNameWrapper = document.body.querySelector("div.enter-name-wrapper")
+
 function duel(event){
     if (gameRunning) {
         if (animated) {
             resetAnimations();
         }
     
-
         player.natElement = new NaturalElement(document.createElement("i"), event.target.innerText)
         player.zone.append(player.natElement.htmlElement);
 
@@ -94,7 +99,7 @@ function resolveRound (playerE, opponentE) {
 
     if (playerE.beats == opponentE.symbol) {
         
-        announcer.innerText = "Player Wins Round!"
+        announcer.innerText = `${player.name} Wins Round!`
         announcer.style.color = "yellow"
   
         opponent.shields--;
@@ -197,13 +202,6 @@ function randomWizard() {
 
 }
 
-function generateShieldString (shields) {
-    let string = "";
-    for (let i=0; i < shields; i++) {
-        string += "🔮";
-    }
-}
-
 function addShields (shieldDiv,shields) {
     for (let i = 0; i < shields; i++) {
         shield = document.createElement("i")
@@ -243,4 +241,21 @@ function resetGameAssets() {
     addShields(player.shieldContainer,3);
     opponent.shields = 3;
     addShields(opponent.shieldContainer,3);
+}
+function inputName (event) {
+    if(event.key === "Enter" ) {
+        submitName(textBox.value)
+        textBox.style.opacity="0%"
+        enterNameWrapper.style.opacity="0%"
+    }
+}
+function submitName(input){ 
+    
+    if(input !=="") {
+        player.name = input;
+        const nameBar = document.body.querySelector("div.name-bar");
+        const name = document.createElement("p")
+        nameBar.appendChild(name)
+        name.innerText = player.name;
+    }
 }

@@ -186,6 +186,27 @@ button.new-game:hover {
     transform: scale(1.4);
 }
 
-.new-game-wrapper {
+.new-game-wrapper, .enter-name-wrapper {
     text-align: center;
+}
+.enter-name-wrapper, .input-name {
+    transition: 850ms;
+    color: yellow;
+    
+}
+.input-name{ 
+    background-image: linear-gradient(
+    180deg,
+    hsl(240deg 100% 20%) 0%,
+    hsl(254deg 99% 23%) 26%,
+    hsl(261deg 97% 25%) 45%,
+    hsl(266deg 95% 28%) 58%,
+    hsl(270deg 94% 31%) 68%,
+    hsl(274deg 92% 34%) 76%,
+    hsl(277deg 91% 37%) 81%,
+    hsl(280deg 90% 39%) 86%,
+    hsl(283deg 90% 42%) 92%,
+    hsl(286deg 91% 44%) 100%
+    );
+    border-radius: 15px;
 }
