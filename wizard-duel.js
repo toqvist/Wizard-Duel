@@ -4,11 +4,14 @@
 //💀🔮
 
 //Confusingly, I call these: 🔥🌱💧 elements, (like earth, wind and fire): 
- function Element (symbol){
+ function NaturalElement (htmlElement,symbol){
+    this.htmlElement = htmlElement;
     this.symbol = symbol;
     this.name = genName();
     this.beats = genBeats();
     
+    setHtmlSymbol(symbol);
+
     function genName (){ 
         if (symbol === "🔥") {
             return "fire";
@@ -27,19 +30,23 @@
             return "🔥";
         }
     }
+    function setHtmlSymbol(sym){
+        htmlElement.innerText = sym
+    }
 }
 
 //Element buttons, player selects one and then the round starts.
 const elementButtons = document.querySelector("div.elements");
 elementButtons.addEventListener('click', duel);
 
+//Player wizard object
 let player = {
     wizard :  document.querySelector("i.player-wizard"),
     zone : document.querySelector("div.player-zone"),
     box : document.querySelector("div.player-box"),
     shield: 3,
 }
-
+//Opponent wizard object
 let opponent = {
     wizard :  document.querySelector("i.opponent-wizard"),
     zone : document.querySelector("div.opponent-zone"),
@@ -48,26 +55,21 @@ let opponent = {
 }
 
 function duel(event){
-    console.log(event)
 
-    let newElement = new Element("🌱");
-    console.log(newElement.symbol)
-    console.log(newElement.beats)
-    
-    player.element = document.createElement("i");
-    player.element.innerText = event.target.innerText;
-    player.zone.append(player.element);
+    player.natElement = new NaturalElement(document.createElement("i"), event.target.innerText)
+    player.zone.append(player.natElement.htmlElement);
 
-    opponent.element = document.createElement("i");
-    opponent.element.innerText = randomElement();
-    opponent.zone.append(opponent.element);
+    opponent.natElement = new NaturalElement(document.createElement("i"), randomElement())
+    opponent.zone.append(opponent.natElement.htmlElement);
 
+    //Add class "animate" to all elements that should be animated.
+    //Animatable elements could be stored in a list in wizard object, and then iterated over in a for loop.
     player.box.classList.add("animate")
-    player.element.classList.add("animate");
+    player.natElement.htmlElement.classList.add("animate");
     player.zone.classList.add("animate");
 
     opponent.box.classList.add("animate")
-    opponent.element.classList.add("animate");
+    opponent.natElement.htmlElement.classList.add("animate");
     opponent.zone.classList.add("animate");
 
     if (whoWinsRound(player.element, opponent.element) === "Player") {
@@ -79,9 +81,6 @@ function duel(event){
 }
 //return player or opponent as string
 function whoWinsRound (playerE, opponentE) {
-    
-
-
 
     // if playerE.beats(opponentE) 
     // 🔥 beats 🌱
