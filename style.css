@@ -14,10 +14,15 @@ h1,h2,h3,h4,h5,p {
 }
 
 i {
-    font-size: 300%;
+    /* font-size: 300%; */
     font-style: normal;
 }
 
+
+.announcer {
+    color: rgb(247, 243, 7);
+    font-size: 300%;
+}
 
 .stars {
     font-size: 2em;
@@ -26,10 +31,25 @@ i {
 
 .battlefield {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 20% 20% 20% 20% 20%;
+    grid-template-columns: 15% 35% 35% 15%;
 }
 
+.player-box {
+    font-size: 8vw;
+    grid-column: 0 1;
+}
+.player.zone {
+    grid-column: 1 2;
+    font-size: 8vw;
+}
+.opponent.zone {
+    grid-column: 2 3;
+    font-size: 8vw;
+}
+.opponent-box {
+    grid-column: 3 4;
+    font-size: 8vw;
+}
 header {
     display: flex;
     justify-content: space-around;
@@ -69,7 +89,16 @@ body {
     height: auto;
     
 }
+/* GAME INFORMATION */
+.game-information {
+    display: flex;
+    justify-content: space-between;
+}
 
+
+.announcer-box {
+    text-align: center;
+}
 .player-box, .opponent-box {
     text-align: center;
 }
@@ -78,45 +107,58 @@ body {
     transition: 200ms;
     transform: scale(1.4);
 }
+
 .element {
     background-color: transparent;
     border: none;
     transition: 850ms;
-    font-size: 2em;
+    font-size: 7vw;
 }
-
+.elements {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.fire {
+    margin-left: 50%;
+    margin-right: 50%;
+}
+.water, .nature {
+    margin: 0.5em;
+}
 /* TRANSITIONS */
+/* WIZAD */
 .player-box.animate {
     transition: transform 100ms;
-    transform: translateX(20%);
+    transform: translateX(10%);
     transition-timing-function: ease;
 }
 
-.player-element, .opponent-element {
-    opacity: 0%;
-}
-
-.player-element.animate  {
-    transition: opacity 50ms;
-    opacity: 100%;
-}
-.player-zone.animate {
-    transition: transform 500ms;
-    transform: translateX(100%);
-}
-.opponent-box.animate{
-    text-align: start;
-}
 .opponent-box.animate {
     transition: transform 100ms;
     transform: translateX(-10%);
     transition-timing-function: ease;
 }
 
-.opponent-zone.animate {
+/* CHOSEN ELEMENT */
+.player.zone, .opponent.zone {
+    opacity: 0%;
+}
+.opponent.zone {
+    text-align: end;
+}
+
+.player.zone.animate {
     transition: transform 500ms;
-    transform: translateX(-100%);
-    
+    transform: translateX(89%);
+    transition-timing-function: ease-in;
+    opacity: 100%;
+}
+.opponent.zone.animate {
+    transition: transform 500ms;
+    transform: translateX(-89%);
+    transition-timing-function: ease-in;
+    opacity: 100%;
 }
 
 

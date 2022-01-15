@@ -39,14 +39,16 @@
 //Player wizard object
 let player = {
     wizard :  document.querySelector("i.player-wizard"),
-    zone : document.querySelector("div.player-zone"),
+    zone : document.querySelector("div.player.zone"),
     box : document.querySelector("div.player-box"),
     shield: 3,
+    shieldHtmlElement: document.querySelector("i.player-shields")
+
 }
 //Opponent wizard object
 let opponent = {
     wizard :  document.querySelector("i.opponent-wizard"),
-    zone : document.querySelector("div.opponent-zone"),
+    zone : document.querySelector("div.opponent.zone"),
     box : document.querySelector("div.opponent-box"),
     shield: 3,
 }
@@ -55,6 +57,8 @@ let opponent = {
 const elementButtons = document.querySelector("div.elements");
 elementButtons.addEventListener('click', duel);
 
+const announcer = document.querySelector("p.announcer")
+//const shieldsSymbol 
 let animated = false;
 
 function duel(event){
@@ -70,34 +74,33 @@ function duel(event){
     opponent.natElement = new NaturalElement(document.createElement("i"), randomElement())
     opponent.zone.append(opponent.natElement.htmlElement);
 
-    
     animate();
 
     resolveRound(player.natElement,opponent.natElement)
-    
+
 }
 //return player or opponent as string
 function resolveRound (playerE, opponentE) {
 
-    
-    console.log(typeof(playerE.beats))
-    console.log(typeof(opponentE.n))
-    //console.log(playerE.beats)
-    // console.log(opponentE.beats)
-
     if (playerE.beats == opponentE.symbol) {
-        alert("Player Wins!")
+        
+        announcer.innerText = "Player Wins Round!"
         opponent.shield--;
+
+
     } else if (opponentE.beats == playerE.symbol) {
-        alert("Opponent Wins!")
+        
+        announcer.innerText = "Opponent Wins Round!"
         player.shield--;
+        
+
     } else {
-        alert("Draw!")
+        announcer.innerText = "Draw!"
     }
 
 }
 //Add class "animate" to all elements that should be animated.
-    //Animatable elements could be stored in a list in wizard object, and then iterated over in a for loop.
+//Suggestion: Animatable elements could be stored in a list in wizard object, and then iterated over in a for loop.
 function animate () {
     player.box.classList.add("animate")
     player.natElement.htmlElement.classList.add("animate");
@@ -119,7 +122,13 @@ function resetAnimations() {
     opponent.natElement.htmlElement.classList.remove("animate");
     opponent.zone.classList.remove("animate");
 
+    removeHtmlElements();
     animated = false;
+}
+
+function removeHtmlElements() {
+    player.natElement.htmlElement.remove();
+    opponent.natElement.htmlElement.remove();
 }
 
 
@@ -150,4 +159,11 @@ function randomWizard() {
         return "👻"
     }
 
+}
+
+function generateShieldString (shields) {
+    let string = "";
+    for (let i=0; i < shields; i++) {
+        string += "🔮";
+    }
 }

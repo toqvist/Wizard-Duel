@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wizard Duel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Niconne&display=swap" rel="stylesheet"> 
@@ -15,26 +15,27 @@
 <body>
     <div class="game-wrapper">
         <header>
+            <i class="player shields">🔮 🔮 🔮</i>
             <i class="stars">✨</i>
             <h1 class="title">Wizard Duel</h1>
             <i class="stars">✨</i>
+            <i class="opponent shields">🔮 🔮 🔮</i>
         </header>
         <main class="battle-box">
+            
             <section class="battlefield">
                 <div class="player-box">
-                    <i class="player-wizard">🧙</i>
+                    <i class="player wizard">🧙</i>
                 </div>
 
-                <div class="player-zone">
-                    <!-- <i class="player-element">🌊</i> -->
-                </div>
+                <div class="player zone"></div>
 
-                <i class="clash-box"></i>
+                <!-- <i class="clash-box"></i> -->
 
-                <div class="opponent-zone"></div>
+                <div class="opponent zone"></div>
 
                 <div class="opponent-box">
-                    <i class="opponent-wizard">🧞</i>
+                    <i class="opponent wizard">🧞</i>
                 </div>
             </section>
             
@@ -45,6 +46,11 @@
             <img class="brick" src="brick.jpeg" alt="">
             <img class="brick" src="brick.jpeg" alt="">
         </div>
+        
+        <div class="announcer-box">
+            <p class="announcer">Choose your element!</p>
+        </div>
+    
         <div class="elements">
             <button class="fire element">🔥</button>
             <button class="nature element">🌱</button>
