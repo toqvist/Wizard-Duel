@@ -3,8 +3,8 @@
 //🌋🌳🌊
 //💀🔮
 //Object
- //let element (symbol){
-    symbol: 
+ //function element (symbol){
+    //this.symbol = symbol;
     //Return true if it beats, otherwise false. Check if both false at round resolution to determine draw. 
     // function beats (e) {
     //     if (beats === e) {
@@ -19,45 +19,47 @@
 const elementButtons = document.querySelector("div.elements");
 elementButtons.addEventListener('click', duel);
 
-//These elements should probably be included in objects at this point
-//Player elements
-const playerWizard =  document.querySelector("i.player-wizard")
-const playerZone = document.querySelector("div.player-zone");
-const playerBox = document.querySelector("div.player-box")
+let player = {
+    wizard :  document.querySelector("i.player-wizard"),
+    zone : document.querySelector("div.player-zone"),
+    box : document.querySelector("div.player-box"),
+    shield: 3,
+}
 
-//Opponent elements
-const opponentWizard =  document.querySelector("i.opponent-wizard")
-const opponentZone = document.querySelector("div.opponent-zone");
-const opponentBox = document.querySelector("div.opponent-box")
-
-//When shield is 0, the other wizard wins. 
-let playerShield = 3;
-let opponentShield = 3;
+let opponent = {
+    wizard :  document.querySelector("i.opponent-wizard"),
+    zone : document.querySelector("div.opponent-zone"),
+    box : document.querySelector("div.opponent-box"),
+    shield: 3,
+}
 
 function duel(event){
     console.log(event)
     
-    
-    const playerElement = document.createElement("i");
-    playerElement.innerText = event.target.innerText;
-    playerZone.append(playerElement);
+    player.element = document.createElement("i");
+    player.element.innerText = event.target.innerText;
+    player.zone.append(player.element);
 
-    const opponentElement = document.createElement("i");
-    opponentElement.innerText = randomElement();
-    opponentZone.append(opponentElement);
+    // const opponentElement = document.createElement("i");
+    // opponentElement.innerText = randomElement();
+    // opponent.zone.append(opponentElement);
 
-    playerBox.classList.add("animate")
-    playerElement.classList.add("animate");
-    playerZone.classList.add("animate");
+    opponent.element = document.createElement("i");
+    opponent.element.innerText = randomElement();
+    opponent.zone.append(opponent.element);
 
-    opponentBox.classList.add("animate")
-    opponentElement.classList.add("animate");
-    opponentZone.classList.add("animate");
+    player.box.classList.add("animate")
+    player.element.classList.add("animate");
+    player.zone.classList.add("animate");
 
-    if (whoWinsRound(playerElement, opponentElement) === "Player") {
-        opponentShield--;
+    opponent.box.classList.add("animate")
+    opponent.element.classList.add("animate");
+    opponent.zone.classList.add("animate");
+
+    if (whoWinsRound(player.element, opponent.element) === "Player") {
+        opponent.shield--;
     } else {
-        playerShield--;
+        player.shield--;
     }
     
 }
