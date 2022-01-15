@@ -225,10 +225,10 @@ function endGameState () {
     gameRunning = false;
     elementButtons.style.opacity = "30%"
     newGameButton.style.opacity = "100%";
-    resetAnimations();
+    
 }
 function resetGameAssets() {
-    
+    resetAnimations();
 
     player.wizard.innerText = "🧙"
     opponent.wizard.innerText = randomWizard();
