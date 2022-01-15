@@ -76,6 +76,9 @@ const textBox = document.body.querySelector("input")
 textBox.addEventListener("keydown", inputName)
 const enterNameWrapper = document.body.querySelector("div.enter-name-wrapper")
 
+//Character switcher for player wizard
+player.box.addEventListener("click", changeWizard);
+
 function duel(event){
     if (gameRunning) {
         if (animated) {
@@ -262,4 +265,15 @@ function submitName(input){
         nameBar.appendChild(name)
         name.innerText = player.name;
     }
+}
+function changeWizard() {
+    let bool = true;
+    while(bool) {
+    let randWizard = randomWizard();
+        if (player.wizard.innerText != randWizard) {
+            bool = false;
+            player.wizard.innerText = randWizard;
+        }
+    }
+   
 }

@@ -167,7 +167,7 @@ button.new-game {
     color: rgb(247, 243, 7);
     background-image: linear-gradient(
     180deg,
-    hsl(240deg 100% 20%) 0%,
+    hsl(240deg 100% 20%) 0%,name-bar
     hsl(254deg 99% 23%) 26%,
     hsl(261deg 97% 25%) 45%,
     hsl(266deg 95% 28%) 58%,
@@ -215,4 +215,10 @@ button.new-game:hover {
     color: yellow;
     font-size: 3vw;
     margin: 2vw;
+}
+
+.player-box:hover {
+    transition: transform 100ms;
+    transform: translateY(-5%);
+    transition-timing-function: ease;
 }
