@@ -38,20 +38,23 @@
 
 //Player wizard object
 let player = {
-    wizard :  document.querySelector("i.player-wizard"),
+    wizard :  document.querySelector("i.player.wizard"),
     zone : document.querySelector("div.player.zone"),
     box : document.querySelector("div.player-box"),
-    shield: 3,
-    shieldHtmlElement: document.querySelector("i.player-shields")
-
+    shields: 3,
+    shieldContainer : document.querySelector("div.player.shields"),
 }
+addShields(player.shieldContainer,player.shields)
+
 //Opponent wizard object
 let opponent = {
-    wizard :  document.querySelector("i.opponent-wizard"),
+    wizard :  document.querySelector("i.opponent.wizard"),
     zone : document.querySelector("div.opponent.zone"),
     box : document.querySelector("div.opponent-box"),
-    shield: 3,
+    shields: 3,
+    shieldContainer : document.querySelector("div.opponent.shields"),
 }
+addShields(opponent.shieldContainer,opponent.shields)
 
 //Element buttons, player selects one and then the round starts.
 const elementButtons = document.querySelector("div.elements");
@@ -85,20 +88,38 @@ function resolveRound (playerE, opponentE) {
     if (playerE.beats == opponentE.symbol) {
         
         announcer.innerText = "Player Wins Round!"
-        opponent.shield--;
-
+        opponent.shields--;
+        console.log("oppo " + opponent.shields)
+        if (opponent.shields === 0) {
+            playerWins();
+        }
 
     } else if (opponentE.beats == playerE.symbol) {
         
         announcer.innerText = "Opponent Wins Round!"
-        player.shield--;
-        
+        player.shields--;
+        console.log("player " + player.shields)
+        if (player.shields === 0) {
+            opponentWins();
+        }
 
     } else {
         announcer.innerText = "Draw!"
     }
+}
+
+function playerWins () {
+    opponent.wizard.innerText = "💀"
+    announcer.innerText = "You win!!!"
+    confetti.start();
 
 }
+
+function opponentWins () {
+    player.wizard.innerText = "💀"
+    announcer.innerText = "You lose."
+}
+
 //Add class "animate" to all elements that should be animated.
 //Suggestion: Animatable elements could be stored in a list in wizard object, and then iterated over in a for loop.
 function animate () {
@@ -135,7 +156,6 @@ function removeHtmlElements() {
 function randomElement () {
     //🔥🌱💧
     let randomNumber = Math.round(Math.random()*3)
-    console.log(randomNumber)
     if(randomNumber === 1) {
         return "🔥"
     } else if (randomNumber === 2) {
@@ -148,7 +168,6 @@ function randomElement () {
 function randomWizard() {
     //🧙👹🧞👻
     let randomNumber = Math.round(Math.random()*4)
-    console.log(randomNumber)
     if(randomNumber === 1) {
         return "🧙"
     } else if (randomNumber === 2) {
@@ -165,5 +184,15 @@ function generateShieldString (shields) {
     let string = "";
     for (let i=0; i < shields; i++) {
         string += "🔮";
+    }
+}
+
+
+
+function addShields (shieldDiv,shields) {
+    for (let i = 0; i < shields; i++) {
+        shield = document.createElement("i")
+        shieldDiv.append(shield)
+        shield.innerText = "🔮";
     }
 }
