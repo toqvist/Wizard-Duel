@@ -75,12 +75,14 @@ body {
 }
 
 .element:hover {
-    transition: transform 125ms;
-    transform: translateY(-5px);
+    transition: 200ms;
+    transform: scale(1.4);
 }
 .element {
     background-color: transparent;
     border: none;
+    transition: 850ms;
+    font-size: 2em;
 }
 
 /* TRANSITIONS */

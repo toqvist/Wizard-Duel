@@ -1,8 +1,17 @@
 //🧙👹🧞👻
 //👿👺
 //🌋🌳🌊
-//💀
-
+//💀🔮
+//Object
+ //let element (symbol){
+    symbol: 
+    //Return true if it beats, otherwise false. Check if both false at round resolution to determine draw. 
+    // function beats (e) {
+    //     if (beats === e) {
+    //         return true;
+    //     }
+    // }
+//}
 
 //Confusingly, I call these: 🔥🌱💧 elements, (like earth, wind and fire): 
 
@@ -21,7 +30,7 @@ const opponentWizard =  document.querySelector("i.opponent-wizard")
 const opponentZone = document.querySelector("div.opponent-zone");
 const opponentBox = document.querySelector("div.opponent-box")
 
-//When shield is 0, the other player wins. 
+//When shield is 0, the other wizard wins. 
 let playerShield = 3;
 let opponentShield = 3;
 
@@ -53,13 +62,20 @@ function duel(event){
     
 }
 //return player or opponent as string
-function whoWinsRound () {
+function whoWinsRound (playerE, opponentE) {
     
+    // if playerE.beats(opponentE) 
+    // 🔥 beats 🌱
+    // 💧 beats 🔥
+    // 🌱 beats 💧
+    // else if opponentE.beats(playerE)
+    //else {return "draw"}
 
 }
 
 
 function randomElement () {
+    //🔥🌱💧
     let randomNumber = Math.round(Math.random()*3)
     console.log(randomNumber)
     if(randomNumber === 1) {
