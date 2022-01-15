@@ -241,6 +241,9 @@ function resetGameAssets() {
     addShields(player.shieldContainer,3);
     opponent.shields = 3;
     addShields(opponent.shieldContainer,3);
+
+    announcer.innerText = "Choose your element!"
+    announcer.style.color = "yellow"
 }
 function inputName (event) {
     if(event.key === "Enter" ) {
