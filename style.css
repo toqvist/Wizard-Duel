@@ -210,3 +210,9 @@ button.new-game:hover {
     );
     border-radius: 15px;
 }
+.name {
+    transition: 850ms;
+    color: yellow;
+    font-size: 3vw;
+    margin: 2vw;
+}

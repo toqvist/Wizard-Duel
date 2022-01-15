@@ -258,6 +258,7 @@ function submitName(input){
         player.name = input;
         const nameBar = document.body.querySelector("div.name-bar");
         const name = document.createElement("p")
+        name.classList.add("name")
         nameBar.appendChild(name)
         name.innerText = player.name;
     }
