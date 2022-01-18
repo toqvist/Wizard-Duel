@@ -1,7 +1,4 @@
-//🧙👹🧞👻
-//👿👺
-//🌋🌳🌊
-//💀🔮
+//🧙👹🧞👻👿👺🌋🌳🌊💀🔮
 
 //Confusingly, I call these: 🔥🌱💧 elements, (like earth, wind and fire): 
  function NaturalElement (htmlElement,symbol){
