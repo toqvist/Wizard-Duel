@@ -9,7 +9,7 @@
     this.symbol = symbol;
     this.name = genName();
     this.beats = genBeats();
-    
+
     setHtmlSymbol(symbol);
 
     function genName (){ 
@@ -33,6 +33,11 @@
     function setHtmlSymbol(sym){
         htmlElement.innerText = sym
     }
+
+    //symbol är innerText av html-element som klickats på
+    //om symbol är id av html-elementet och det alltid är 0, 1 eller 2
+    // const arrayAvBeats = ["🌱", "💧", "🔥"]
+    // this.beats = arrayAvBeats[symbol];
 }
 
 
@@ -44,6 +49,7 @@ let player = {
     shields: 3,
     shieldContainer : document.querySelector("div.player.shields"),
     name: "Player",
+    
 }
 addShields(player.shieldContainer,player.shields)
 
@@ -80,20 +86,24 @@ const enterNameWrapper = document.body.querySelector("div.enter-name-wrapper")
 player.box.addEventListener("click", changeWizard);
 
 function duel(event){
-    if (gameRunning) {
-        if (animated) {
-            resetAnimations();
+
+    if (event.target.nodeName === "BUTTON") {
+
+        if (gameRunning) {
+            if (animated) {
+                resetAnimations();
+            }
+
+            player.natElement = new NaturalElement(document.createElement("i"), event.target.innerText)
+            player.zone.append(player.natElement.htmlElement);
+
+            opponent.natElement = new NaturalElement(document.createElement("i"), randomElement())
+            opponent.zone.append(opponent.natElement.htmlElement);
+
+            animate();
+
+            resolveRound(player.natElement,opponent.natElement)
         }
-    
-        player.natElement = new NaturalElement(document.createElement("i"), event.target.innerText)
-        player.zone.append(player.natElement.htmlElement);
-
-        opponent.natElement = new NaturalElement(document.createElement("i"), randomElement())
-        opponent.zone.append(opponent.natElement.htmlElement);
-
-        animate();
-
-        resolveRound(player.natElement,opponent.natElement)
     }
 
 }
